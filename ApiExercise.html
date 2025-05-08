@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONPlaceholder Users</title>
+    <style>
+        /* CSS: Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .user-card {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .user-card h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+
+        .user-card p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>JSONPlaceholder Users</h1>
+    <a href="../index.html">Home</a>
+
+    <h2>API Data Display</h2>
+    <p>We will fetch 10 users from <a href="https://jsonplaceholder.typicode.com/users" target="_blank">JSONPlaceholder Users API</a> and display their name, email, and city.</p>
+
+    <!-- Container for displaying users -->
+    <div id="user-list"></div>
+
+    <script>
+        // Step 1: Set the API URL
+        var requestURL = 'https://jsonplaceholder.typicode.com/users';
+
+        // Step 2: Fetch the data from the API
+        fetch(requestURL)
+            .then(response => response.json())
+            .then(data => {
+                // Step 3: Get the container where we'll display the user cards
+                var userList = document.getElementById("user-list");
+
+                // Step 4: Initialize counter for while loop
+                var i = 0;
+
+                // Step 5: Loop through the users using while loop
+                while (i < data.length) {
+
+                    // Step 5.1: For each user, create a new div element
+                    var userCard = document.createElement("div");
+                    userCard.className = "user-card"; // Add styling class
+
+                    // Step 5.2: Create and append the user name
+                    var nameHeading = document.createElement("h3");
+                    nameHeading.innerText = data[i].name;
+                    userCard.appendChild(nameHeading);
+
+                    // Step 5.3: Create and append the email
+                    var emailPara = document.createElement("p");
+                    emailPara.innerText = "Email: " + data[i].email;
+                    userCard.appendChild(emailPara);
+
+                    // Step 5.4: Create and append the city
+                    var cityPara = document.createElement("p");
+                    cityPara.innerText = "City: " + data[i].address.city;
+                    userCard.appendChild(cityPara);
+
+                    // Step 5.5: Append the user card to the main container
+                    userList.appendChild(userCard);
+
+                    // Step 5.6: Increment the counter to avoid infinite loop
+                    i++;
+                }
+            });
+    </script>
+
+</body>
+</html>
