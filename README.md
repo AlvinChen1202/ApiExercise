@@ -1,2 +1,0 @@
-# ApiExercise
-The data used in this project is sourced from JSONPlaceholder, which provides publicly available fake data intended for testing and educational purposes only. All user names, emails, addresses, and other personal details are entirely fictional and do not represent real individuals. This project is for academic use, and no actual personal data has been collected or used. Please refer to the JSONPlaceholder terms of use for further information regarding data usage.
